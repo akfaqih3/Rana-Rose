@@ -121,31 +121,28 @@
                   </li>
                     <!-- Dropdown Categories -->
                     <li class="nav-item dropdown">
-                    <a
-                    class="nav-link dropdown-toggle"
-                    href="#"
-                    id="Categoriesdropdown"
-                    data-bs-toggle="dropdown" 
-                    role="button"
-                    aria-expanded="false"
-                    >
-                    Categories
-                    </a>
-                    <ul class="dropdown-menu" aria-labelledby="Categoriesdropdown">
-                        {% for category in categories %}
-                        <li>
-                            <a class="dropdown-item" href="#">{{category.name}}</a>
-                        </li>
-                        {% empty %}
-                        <li>
-                            <a class="dropdown-item disabled">No Categories</a>
-                        </li>
-                        {% endfor %}
-                    </ul>
+                      <a
+                      class="nav-link dropdown-toggle"
+                      href="#"
+                      id="Categoriesdropdown"
+                      data-bs-toggle="dropdown" 
+                      role="button"
+                      aria-expanded="false"
+                      >
+                      Categories
+                      </a>
+                      <ul class="dropdown-menu"   aria-labelledby="#Categoriesdropdown">
+                          {% for category in categories %}
+                          <li>
+                              <a class="dropdown-item" href="#">{{category.name}}</a>
+                          </li>
+                          {% empty %}
+                          <li>
+                              <a class="dropdown-item disabled">No Categories</a>
+                          </li>
+                          {% endfor %}
+                      </ul>
                     </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="#">Products</a>
-                  </li>
                   <li class="nav-item">
                     <a class="nav-link" href="#">About</a>
                   </li>
@@ -158,9 +155,6 @@
                       aria-label="Search"
                       aria-describedby="search-addon"
                     />
-                    <span class="input-group-text border-0" id="search-addon">
-                      <i class="fas fa-search"></i>
-                    </span>
                   </form>
                 <!-- Left links -->
               </div>

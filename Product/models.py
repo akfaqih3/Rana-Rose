@@ -1,5 +1,7 @@
 from django.db import models
-
+from django.core.validators import MaxValueValidator,MinValueValidator
+from django.utils import timezone
+from datetime import timedelta
 # Create your models here.
 
 
@@ -22,3 +24,16 @@ class Product(models.Model):
 
     def __str__(self) -> str:
         return self.name
+
+class Offer(models.Model):
+    product = models.ForeignKey(Product,on_delete=models.CASCADE)
+    discount = models.IntegerField(validators=[MaxValueValidator(99.99),MinValueValidator(1.00)])
+    start_date = models.DateField(default=timezone.now)
+    end_date = models.DateField(default=timezone.datetime.today)
+
+    def __str__(self) -> str:
+        return f"Offer for {self.product.name} (dicount: {self.discount}%)"
+    
+    def clean(self) -> None:
+        if self.start_date and self.end_date and (self.start_date > self.end_date or self.start_date == self.end_date) :
+            raise ValueError("Start date cannot be after or equal end date")

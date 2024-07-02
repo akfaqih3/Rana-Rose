@@ -1,6 +1,6 @@
-<div class="container">
+
     {% include 'include/carousel.html' %}
-</div>
+
 
 <div class="container-fluid bg-body-tertiary">
     <div class="container">
@@ -8,7 +8,7 @@
             <h2 class="text-center mb-5">Categories</h2>
             <div class="d-flex align-items-center justify-content-center">
                 <span id="btn_prev" class="carousel-control-prev-icon   alert alert-dark shadow-sm opacity-75 m-4 mt-0 mb-0" aria-hidden="true"></span>
-                <div class="row w-75 overflow-auto flex-nowrap" id="categories_cards">
+                <div class="row w-75 overflow-auto  flex-nowrap" id="categories_cards">
                     {% for category in categories %}
                         <div class="card col-6 col-md-4 col-lg-3  border-0 text-center bg-body-tertiary">
                             <a href="" class="text-decoration-none">
@@ -29,49 +29,47 @@
 </div>
 
 <section class="bg-white">
-    <div class="text-center container py-5">
+    <div class="text-center container">
         
         <div class="row w-75 m-auto">  
-          <h4 class="mt-4 mb-5 text-start"><strong>New Products</strong></h4>
-        {% for product in products %}
-            <div class="col-lg-3 col-md-6 mb-4">
-                <div class="card border-0 shadow-sm">
-                    <div class="bg-image hover-zoom ripple ripple-surface ripple-surface-light"
-                    data-mdb-ripple-color="light">
-                    <img src="{{product.photo.url}}"
-                        class="w-100"
-                        height="250" />
-                    <a href="#!">
-                        <div class="mask">
-                        <div class="d-flex justify-content-start align-items-end h-100">
-                            <h5><span class="badge bg-success ms-2">10%</span></h5>
+          <h4 class="mt-4 mb-5 text-start"><strong>Offers</strong></h4>
+            {% for offer in offers %}
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <div class="card border-0 shadow-sm">
+                        <div class="bg-image hover-zoom ripple ripple-surface ripple-surface-light"
+                        data-mdb-ripple-color="light">
+                        <img src="{{offer.product.photo.url}}"
+                            class="w-100"
+                            height="250" />
+                            <div class="mask float-end m-1 mb-0">
+                                <div class="d-flex justify-content-start align-items-end h-100">
+                                    <h5><span class="badge bg-success shadow-sm ms-2">{{offer.discount}}%</span></h5>
+                                </div>
+                            </div>
                         </div>
+                        <div class="card-body text-start mt-0 pt-0">
+                        <a href="" class="text-reset  text-decoration-none">
+                            <h5 class="card-title mb-1">{{offer.product.name}}</h5>
+                        </a>
+                        <a href="" class="text-reset text-decoration-none">
+                            <p>{{offer.product.category}}</p>
+                        </a>
+                        {% with price=offer.product.price discount=offer.discount %}
+                            <h6 class="mb-1 float-end">{{price}}SAR</h6>
+                            <h6 class="mb-1 float-end m-2 mt-0 mb-0 text-danger text-decoration-line-through small">{{offer.product.price}}</h6>
+                        {% endwith %}
                         </div>
-                        <div class="hover-overlay">
-                        <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
-                        </div>
-                    </a>
-                    </div>
-                    <div class="card-body text-start">
-                    <a href="" class="text-reset  text-decoration-none">
-                        <h5 class="card-title mb-1">{{product.name}}</h5>
-                    </a>
-                    <a href="" class="text-reset text-decoration-none">
-                        <p>{{product.category}}</p>
-                    </a>
-                    <h6 class="mb-1 float-end">SAR{{product.price}}</h6>
                     </div>
                 </div>
-            </div>
-        {% empty %}
-            <h4 class="text-center">No Discount today!!!</h4>
-        {% endfor %}
+            {% empty %}
+                <h4 class="text-center">No Discount today!!!</h4>
+            {% endfor %}
       </div>
     </div>
 </section>
 
 <section class="bg-body-tertiary" >
-    <div class="text-center container py-5">
+    <div class="text-center container">
         
         <div class="row w-75 m-auto">  
           <h4 class="mt-4 mb-5 text-start"><strong>New Products</strong></h4>
