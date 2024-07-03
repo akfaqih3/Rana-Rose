@@ -4,14 +4,15 @@
     {% include 'include/head.html' %}
 </head>
 <body>
-
     <header>
         {% include 'include/header.html' %}
     </header>
-
-    <main>
-        {% include 'include/main.html' %}
-    </main>
+    
+    {% block content %}
+        <main>
+            {% include 'include/main.html' %}
+        </main>
+    {% endblock content %}
 
     <footer>
         {% include 'include/footer.html' %}

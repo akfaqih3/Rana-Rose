@@ -86,7 +86,7 @@
     </div>
 </nav>
 
-<div class="bg-body-tertiary">
+<div class="bg-body-tertiary ">
     <div class="container w-75 m-auto">
         <nav class="navbar navbar-expand-md sticky-top navbar-light bg-body-tertiary">
             <!-- Container wrapper -->
@@ -111,13 +111,13 @@
                     loading="lazy"
                   />
                 </a> -->
-                <a class="navbar-brand text-info fs-3 fw-bold p-0" href="#"
+                <a class="navbar-brand text-info fs-3 fw-bold p-0" href="{% url 'Site:Home' %}"
                     >Rana<span class="text-black">Rose</span>
                 </a>
                 <!-- Left links -->
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                   <li class="nav-item">
-                    <a class="nav-link" href="#">Home</a>
+                    <a class="nav-link" href="{% url 'Site:Home' %}">Home</a>
                   </li>
                     <!-- Dropdown Categories -->
                     <li class="nav-item dropdown">
@@ -134,7 +134,7 @@
                       <ul class="dropdown-menu"   aria-labelledby="#Categoriesdropdown">
                           {% for category in categories %}
                           <li>
-                              <a class="dropdown-item" href="#">{{category.name}}</a>
+                              <a class="dropdown-item" href="{% url 'Product:list' category.name %}">{{category.name}}</a>
                           </li>
                           {% empty %}
                           <li>
@@ -155,7 +155,7 @@
                       aria-label="Search"
                       aria-describedby="search-addon"
                     />
-                  </form>
+                </form>
                 <!-- Left links -->
               </div>
               <!-- Collapsible wrapper -->
@@ -163,20 +163,21 @@
               <!-- Right elements -->
               <div class="d-flex align-items-center">
                 <!-- Icon -->
-                <a class="text-reset me-3" href="#">
-                  <i class="fa fa-cart-shopping fa-2"></i>
+                <a class="text-reset mx-2 me-3" href="#">
+                  <i class="fa fa-cart-shopping fa-2x text-info"></i>
                 </a>    
                 <!-- <i class="fa-solid fa-cart-shopping fa-2x"></i> -->
                 <!-- Avatar -->
-                <div class="dropdown">
-                  <a
-                    class="dropdown-toggle d-flex align-items-center hidden-arrow"
-                    href="#"
-                    id="navbarDropdownMenuAvatar"
-                    data-bs-toggle="dropdown"
-                    role="button"
-                    aria-expanded="false"
-                    >
+                {% if user.is_authenticated %}
+                  <div class="dropdown">
+                    <a
+                      class=" hidden-arrow"
+                      href="#"
+                      id="navbarDropdownMenuAvatar"
+                      data-bs-toggle="dropdown"
+                      role="button"
+                      aria-expanded="false"
+                      >
                         {% if user.avatar %}
                             <img
                             src="{{user.avater}}"
@@ -186,26 +187,29 @@
                             loading="lazy"
                             />
                         {% else %}
-                          <a class="text-reset" href="#">
-                            <i class="fa fa-sign-in "></i>
-                          </a> 
+                            <i class="fa fa-user-circle text-info fa-2x "></i>
                         {% endif %}
                     </a>
-                  <ul
-                    class="dropdown-menu dropdown-menu-end"
-                    aria-labelledby="navbarDropdownMenuAvatar"
-                  >
-                    <li>
-                      <a class="dropdown-item" href="#">My profile</a>
-                    </li>
-                    <li>
-                      <a class="dropdown-item" href="#">Settings</a>
-                    </li>
-                    <li>
-                      <a class="dropdown-item" href="#">Logout</a>
-                    </li>
-                  </ul>
-                </div>
+                    <ul
+                      class="dropdown-menu dropdown-menu-end"
+                      aria-labelledby="navbarDropdownMenuAvatar"
+                    >
+                      <li>
+                        <a class="dropdown-item" href="#">My profile</a>
+                      </li>
+                      <li>
+                        <a class="dropdown-item" href="#">Settings</a>
+                      </li>
+                      <li>
+                        <a class="dropdown-item" href="#">Logout</a>
+                      </li>
+                    </ul>
+                  </div>
+                {% else %}
+                  <a class="text-reset me-3" href="#">
+                    <i class="fa fa-sign-in fa-2x text-info"></i>
+                  </a>
+                {% endif %}
               </div>
               <!-- Right elements -->
             </div>

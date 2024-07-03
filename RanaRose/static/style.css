@@ -183,6 +183,3 @@
 
 
 /* ============= categories_cards ========*/
-#categories_cards::-webkit-scrollbar{
-  display: none;
-}

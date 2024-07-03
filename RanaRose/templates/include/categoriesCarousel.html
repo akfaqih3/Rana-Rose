@@ -1,0 +1,23 @@
+
+<section class="pb-2 " >
+    <div class="text-center container">
+        
+        <div class="row w-75 m-auto">  
+          <h4 class="mt-4 mb-5 text-center"><strong>Categories</strong></h4>
+            <div class="d-flex gap-2 overflow-auto">
+                {% for category in categories %}
+                    <div class="card col-6 col-md-4 col-lg-3  border-0 text-center">
+                        <a href="{% url 'Product:list' category %}" class="text-decoration-none">
+                            <img src="{{category.photo.url}}" alt="{{category.name}}" class="card-img bg-white rounded-circle shadow-sm">
+                            <div class="card-body">
+                                <h5 class="card-title text-info">{{category.name}}</h5>
+                            </div>
+                        </a>
+                    </div>
+                {% empty %}
+                    <h4 class="text-center">No top selling!!!</h4>
+                {% endfor %}
+            </div>
+      </div>
+    </div>
+</section>
