@@ -195,18 +195,18 @@
                       aria-labelledby="navbarDropdownMenuAvatar"
                     >
                       <li>
-                        <a class="dropdown-item" href="#">My profile</a>
+                        <a class="dropdown-item" href="#"><i class="fa fa-user mx-1 text-info"></i>My profile</a>
                       </li>
                       <li>
-                        <a class="dropdown-item" href="#">Settings</a>
+                        <a class="dropdown-item" href="#"><i class="fa fa-cog mx-1 text-dark-emphasis"></i> Settings</a>
                       </li>
                       <li>
-                        <a class="dropdown-item" href="#">Logout</a>
+                        <a class="dropdown-item" href="{% url 'Registration:logout' %}" data-b-toggle="modal" data-b-target="#logoutModal"><i class="fa fa-power-off mx-1 text-danger"></i>Logout</a>
                       </li>
                     </ul>
                   </div>
                 {% else %}
-                  <a class="text-reset me-3" href="#">
+                  <a class="text-reset me-3" href="{% url 'Registration:login' %}">
                     <i class="fa fa-sign-in fa-2x text-info"></i>
                   </a>
                 {% endif %}

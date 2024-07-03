@@ -1,0 +1,11 @@
+
+<section>
+    <div class="container">
+        <form action="" method="POST" class="">
+            {% csrf_token %}
+            {{form.as_p}}
+            <input type="submit" class="btn btn-success w-auto" value="signup">
+        </form>
+        <a href="{% url 'Registration:signup' %}">Have a Account?</a>
+    </div>
+</section>
