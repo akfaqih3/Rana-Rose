@@ -163,12 +163,12 @@
               <!-- Right elements -->
               <div class="d-flex align-items-center">
                 <!-- Icon -->
-                <a class="text-reset mx-2 me-3" href="#">
-                  <i class="fa fa-cart-shopping fa-2x text-info"></i>
-                </a>    
-                <!-- <i class="fa-solid fa-cart-shopping fa-2x"></i> -->
-                <!-- Avatar -->
                 {% if user.is_authenticated %}
+                  <a class="text-reset mx-2 me-3" href="#">
+                    <i class="fa fa-cart-shopping fa-2x text-info"></i>
+                  </a>    
+                  <!-- <i class="fa-solid fa-cart-shopping fa-2x"></i> -->
+                  <!-- Avatar -->
                   <div class="dropdown">
                     <a
                       class=" hidden-arrow"
@@ -195,18 +195,18 @@
                       aria-labelledby="navbarDropdownMenuAvatar"
                     >
                       <li>
-                        <a class="dropdown-item" href="#"><i class="fa fa-user mx-1 text-info"></i>My profile</a>
+                        <a class="dropdown-item" href="#"><i class="fa fa-user mx-1 text-info"></i>{{user.first_name|add:' '|add:user.last_name}}</a>
                       </li>
                       <li>
                         <a class="dropdown-item" href="#"><i class="fa fa-cog mx-1 text-dark-emphasis"></i> Settings</a>
                       </li>
                       <li>
-                        <a class="dropdown-item" href="{% url 'Registration:logout' %}" data-b-toggle="modal" data-b-target="#logoutModal"><i class="fa fa-power-off mx-1 text-danger"></i>Logout</a>
+                        <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#logoutModal"><i class="fa fa-power-off mx-1 text-danger"></i>Logout</a>
                       </li>
                     </ul>
                   </div>
                 {% else %}
-                  <a class="text-reset me-3" href="{% url 'Registration:login' %}">
+                  <a class="text-reset mx-4 me-3" href="{% url 'Registration:login' %}">
                     <i class="fa fa-sign-in fa-2x text-info"></i>
                   </a>
                 {% endif %}

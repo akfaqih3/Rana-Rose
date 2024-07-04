@@ -1,11 +1,32 @@
-
+{% extends 'base.html' %}
+{% block content %}
 <section>
-    <div class="container">
-        <form action="" method="POST" class="">
-            {% csrf_token %}
-            {{form.as_p}}
-            <input type="submit" class="btn btn-success w-auto" value="login">
-        </form>
-        <a href="{% url 'Registration:signup' %}">New Account?</a>
+    <div class="container w-75 m-auto mt-2 ">
+        <div class="card col-12 col-md-6 col-lg-6 align-items-center m-auto">
+            <div class="card-header text-center w-100">
+                <h3 class="text-info">Login to Account</h3>
+            </div>
+            <div class="card-body w-100">
+                <form action="{% url 'Registration:login' %}" method="POST">
+                    {% csrf_token %}
+                    {% for feild in form %}
+                        <div class="form-group py-2">
+                            {{feild.label}}
+                            {{feild}}
+                            
+                        </div>
+                    {% endfor %}
+                    {% if form.errors %}
+                    <small class="text-danger">Please enter a correct username and password.</small>
+                    {% endif %}
+                    <input type="submit" class="btn btn-success mt-2" value="login">
+                </form>
+                <div class="d-flex justify-content-between ">
+                    <a href="{% url 'Registration:signup' %}" class="m-2 text-info text-decoration-none small">I haven't a account yet.</a>
+                    <a href="{% url 'Registration:login' %}" class="m-2 text-info text-decoration-none small">Forget password.</a>
+                </div>
+            </div>
+        </div>
     </div>
 </section>
+{% endblock content %}
