@@ -6,12 +6,13 @@ from Product.models import Product,Category,Offer
 from datetime import datetime
 class Home(TemplateView):
     template_name='base.html'
-    
+
     def get_context_data(self, **kwargs: Any) -> dict[str, Any]:
         products = Product.objects.all()
         categories = Category.objects.all()
         carousels = Category.objects.all()[:3]
         offers = Offer.objects.filter(end_date__gte=datetime.today())
+        self.request.session['thename']='akram'
         context = {
             'products':products,
             'categories':categories,

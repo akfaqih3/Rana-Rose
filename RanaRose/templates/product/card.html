@@ -1,0 +1,34 @@
+
+<div id="{{product.pk}}" class="card border-0 shadow-sm">
+    <div class="bg-image hover-zoom ripple ripple-surface ripple-surface-light"
+        data-mdb-ripple-color="light">
+        <a href="{% url 'Product:productDetails' product.pk %}">
+            <img src="{{product.photo.url}}"
+                class="w-100"
+                height="250" 
+                id="image"/>
+                {% if offer %}
+                    <div class="mask float-end m-1 mb-0">
+                        <div class="d-flex justify-content-start align-items-end h-100">
+                            <h5><span class="badge bg-success shadow-sm ms-2">{{offer.discount}}%</span></h5>
+                        </div>
+                    </div>
+                {% endif %}
+        </a>
+    </div>
+    <div class="card-body text-start">
+        <h5 id="name" class="card-title text-reset text-decoration-none mb-1">{{product.name}}</h5>
+        <p id="category" class=" text-reset text-decoration-none mb-0">{{product.category}}</p>
+        {% if offer %}
+            <h6 class="mb-1 float-end">{{product.price|add:offer.discount}}SAR</h6>
+            <h6 class="mb-1 float-end m-2 mt-0 mb-0 text-danger text-decoration-line-through small">{{product.price}}</h6>
+        {% else %}
+            <h6 id="price" class="mb-1 float-end">{{product.price}}SAR</h6>
+        {% endif %}
+    </div>
+    <div class="card-footer border-0 bg-body pt-0">
+        <button class="btn btn-success d-block w-100" id="addProduct">
+            <i id="cart_icon" class="fa-solid fa-cart-plus fa-2"></i>
+        </button>
+    </div>
+</div>
