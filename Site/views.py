@@ -12,7 +12,6 @@ class Home(TemplateView):
         categories = Category.objects.all()
         carousels = Category.objects.all()[:3]
         offers = Offer.objects.filter(end_date__gte=datetime.today())
-        self.request.session['thename']='akram'
         context = {
             'products':products,
             'categories':categories,
