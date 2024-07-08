@@ -17,6 +17,15 @@ products.addEventListener('click',function(event){
             btn.classList.toggle('btn-outline-danger')
             btn.classList.toggle('btn-success')
             icon.classList.toggle('fa-trash')
+            
+
+            cart_badge = document.getElementById('cart_icon').querySelector('span')
+            if (icon.classList.contains('fa-trash')){
+                cart_badge.innerText = Number(cart_badge.innerText)+1;
+            }else{
+                cart_badge.innerText = Number(cart_badge.innerText)-1;
+            }
+
         }
         
     })
