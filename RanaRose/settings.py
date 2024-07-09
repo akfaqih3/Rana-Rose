@@ -41,7 +41,6 @@ INSTALLED_APPS = [
     'RanaRose',
     'Site',
     'Product',
-    'Order',
 ]
 
 MIDDLEWARE = [
