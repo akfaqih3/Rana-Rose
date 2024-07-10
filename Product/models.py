@@ -37,3 +37,7 @@ class Offer(models.Model):
     def clean(self) -> None:
         if self.start_date and self.end_date and (self.start_date > self.end_date or self.start_date == self.end_date) :
             raise ValueError("Start date cannot be after or equal end date")
+        
+    @property
+    def net_price(self):
+        return (self.product.price * (100 - self.discount)) / 100

@@ -20,15 +20,21 @@
         <h5 id="name" class="card-title text-reset text-decoration-none mb-1">{{product.name}}</h5>
         <p id="category" class=" text-reset text-decoration-none mb-0">{{product.category}}</p>
         {% if offer %}
-            <h6 class="mb-1 float-end">{{product.price|add:offer.discount}}SAR</h6>
+            <h6 class="mb-1 float-end">{{offer.net_price}}SAR</h6>
             <h6 class="mb-1 float-end m-2 mt-0 mb-0 text-danger text-decoration-line-through small">{{product.price}}</h6>
         {% else %}
             <h6 id="price" class="mb-1 float-end">{{product.price}}SAR</h6>
         {% endif %}
     </div>
     <div class="card-footer border-0 bg-body pt-0">
-        <button class="btn btn-success d-block w-100" id="addProduct">
-            <i id="cart_icon" class="fa-solid fa-cart-plus fa-2"></i>
-        </button>
+        {% if product.pk in cart %}
+            <button class="btn_product btn btn-outline-danger d-block w-100" data-product="{{product.pk}}" id="delete">
+                <i id="cart_icon" class="fa-solid fa-trash fa-2"></i>
+            </button>
+        {% else %}
+            <button class="btn_product btn btn-success d-block w-100" data-product="{{product.pk}}" id="add">
+                <i id="cart_icon" class="fa-solid fa-cart-plus fa-2"></i>
+            </button>
+        {% endif %}
     </div>
 </div>
