@@ -27,13 +27,11 @@
         {% endif %}
     </div>
     <div class="card-footer border-0 bg-body pt-0">
-        {% if product.pk in cart %}
-            <button class="btn_product btn btn-outline-danger d-block w-100" data-product="{{product.pk}}" id="delete">
-                <i id="cart_icon" class="fa-solid fa-trash fa-2"></i>
+        {% if product in cart.products %}
+            <button class="btn_product btn btn-outline-danger d-block fa-solid fa-trash fs-4 w-100" data-product="{{product.pk}}" id="delete">
             </button>
         {% else %}
-            <button class="btn_product btn btn-success d-block w-100" data-product="{{product.pk}}" id="add">
-                <i id="cart_icon" class="fa-solid fa-cart-plus fa-2"></i>
+            <button class="btn_product btn btn-success d-block fa-solid fa-cart-plus fs-4 w-100" data-product="{{product.pk}}" id="add">
             </button>
         {% endif %}
     </div>

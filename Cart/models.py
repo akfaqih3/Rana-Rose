@@ -11,13 +11,13 @@ class Cart(models.Model):
 
     @property
     def grand_total(self):
-        products = self.CartProduct_set.all()
-        total = sum([product.price for product in products])
+        products = self.cartproduct_set.all()
+        total = sum([product.net_price for product in products])
         return total
 
     @property
     def products(self):
-        products = [product.product for product in self.cartproduct_set.all()]
+        products = [row.product for row in self.cartproduct_set.all()]
         return products
     
     def __str__(self) -> str:
@@ -31,8 +31,8 @@ class CartProduct(models.Model):
     @property
     def net_price(self):
         product = self.product
-        if product.Offer_set :
-            offer = product.Offer_set.filter(end_date__gte=datetime.today()).last()
+        if product.offer_set :
+            offer = product.offer_set.filter(end_date__gte=datetime.today()).last()
             if offer:
                 #price = (product.price * (100 - offer.discount))/100 
                 return offer.net_price

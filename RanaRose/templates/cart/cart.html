@@ -1,0 +1,47 @@
+<div class="offcanvas offcanvas-end" tabindex="-1" id="cartOffcanvas" aria-labelledby="cartOffcanvasLabel">
+    <div class="offcanvas-header">
+        <h5 class="offcanvas-title" id="cartOffcanvasLabel">Cart</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body">
+        <div class="w-100">
+                <!-- Cart Section -->
+            <div class="card mt-3">
+                <div class="card-header">
+                    <h6 class="card-title text-center" id="cart_count">Products Count: {{cart.products|length}}</h6>
+                </div>
+                <div class="card-body">
+                    
+                    <table class="table  table-hover text-center">
+                        <thead>
+                        <tr>
+                            <th scope="col"><h6><strong>Product</strong></h6></th>
+                            <th scope="col"><h6><strong>Name</strong></h6></th>
+                            <th scope="col"><h6><strong>Price</strong></h6></th>
+                        </tr>
+                        </thead>
+                        <tbody id="cart_body" >
+
+                        {% for product in cart.products %}
+                        <tr>
+                            <td><img src ='{{product.photo.url}}' width="40" height="36"></td>
+                            <td><h6 class="fw-normal">{{product.name}}</h6></td>
+                            <td><h6 class="fw-normal">{{product.price | floatformat:2}}</h6></td>
+                        </tr>
+                        {% endfor %}
+                                               
+                        </tbody>
+                        <tfoot>
+                            <tr>                        
+                                <th>Total</th>
+                                <td></td>
+                                <td id = 'cart_total'><h6><strong>{{cart.grand_total | floatformat:2}}</strong> <small>SAR</small></h6></td>
+                            </tr>
+                            
+                        </tfoot>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

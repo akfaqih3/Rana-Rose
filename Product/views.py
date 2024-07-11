@@ -14,25 +14,14 @@ class ProductDetails(DetailView):
     def get_context_data(self, **kwargs: Any) -> dict[str, Any]:
         releaseProducts = Product.objects.filter(category=self.get_object().category)
         object = Product.objects.get(pk=self.kwargs['pk'])
+        offer = object.offer_set.filter(end_date__gte=datetime.today()).last()
         context = {
             'releaseProducts':releaseProducts,
-            'object':object
+            'object':object,
+            'offer':offer
         }
         return context
-    
-class OfferDetails(DetailView):
-    model = Offer
-    template_name = 'product/details.html'
 
-    def get_context_data(self, **kwargs: Any) -> dict[str, Any]:
-        releaseProducts = Offer.objects.filter(end_date__gte=datetime.today())
-        object = Offer.objects.get(pk=self.kwargs['pk'])
-        context = {
-            'releaseProducts':releaseProducts,
-            'object':object
-        }
-        return context
-    
 class List(ListView):
     model = Product
     template_name = 'product/list.html'

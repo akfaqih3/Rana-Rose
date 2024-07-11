@@ -19,9 +19,22 @@ def addToCart(request):
         cart.refresh_from_db()
         cart_length = len(cart.products)
         pk_products = [product.pk for product in cart.products]
+
+        the_cart=[]
+        for pro in cart.products :
+            the_cart.append(
+                {
+                    'pk':pro.pk,
+                    'name':pro.name,
+                    'desc':pro.description,
+                    'price':pro.price,
+                    'photo':pro.photo.url
+                }
+            )
     data_response={
-         'length':cart_length,
-         'pks':pk_products
+         'pks':pk_products,
+         'cart_total':cart.grand_total,
+         'products':the_cart
     }
     return JsonResponse(data_response,safe=False)
 
@@ -38,8 +51,22 @@ def removeFromCart(request):
 
         cart_length = len(cart.products)
         pk_products = [product.pk for product in cart.products]
+
+        
+        the_cart=[]
+        for pro in cart.products :
+            the_cart.append(
+                {
+                    'pk':pro.pk,
+                    'name':pro.name,
+                    'desc':pro.description,
+                    'price':pro.price,
+                    'photo':pro.photo.url
+                }
+            )
     data_response={
-         'length':cart_length,
-         'pks':pk_products
+         'pks':pk_products,
+         'cart_total':cart.grand_total,
+         'products':the_cart
     }
     return JsonResponse(data_response,safe=False)

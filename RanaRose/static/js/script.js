@@ -35,9 +35,7 @@ for (const btn of cart_btns){
         }else{
             removeFromCart(e.target);
         }
-        e.target.classList.toggle('btn-success')
-        e.target.classList.toggle('btn-outline-danger')
-        //e.target.childNode('i')[0].classList.toggle('fa-trash')
+       
     });
 };
 
@@ -115,16 +113,37 @@ function removeFromCart(target){
 }
 
 function showResult(data){
-    cart_badge = document.getElementById('cart_badge')
-    cart_badge.innerText = data.length
-    
+    var cart = data
+    cart_badge = document.getElementById('cart_badge');
+    cart_badge.innerText = cart.products.length;
+    updateCart(cart);
     for (const btn of cart_btns){
-        if (data.pks.includes(Number(btn.dataset.product))){
+        if (cart.pks.includes(Number(btn.dataset.product))){
             btn.id = "delete";
             btn.classList.replace('btn-success','btn-outline-danger');
+            btn.classList.replace('fa-cart-plus','fa-trash');
         }else{
            btn.id = "add";
            btn.classList.replace('btn-outline-danger','btn-success')
+           btn.classList.replace('fa-trash','fa-cart-plus')
         }
     };
+}
+
+function updateCart(cart){
+    cart_count = document.getElementById('cart_count');
+    cart_total = document.getElementById('cart_total');
+    cart_body = document.getElementById('cart_body');
+    cart_count.innerText=`Products Count: ${cart.products.length}`;
+    cart_total.innerText = cart.cart_total;
+
+    cart_body.innerHTML = ''
+    cart.products.forEach(product => {
+        new_row = `<tr>
+        <td><img src ='${product.photo}' width="40" height="36"></td>
+        <td><h6 class="fw-normal">${product.name}</h6></td>
+        <td><h6 class="fw-normal">${product.price}</h6></td>
+        </tr>`
+        cart_body.innerHTML +=new_row;
+    });
 }

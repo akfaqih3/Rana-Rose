@@ -1,96 +1,8 @@
 <style>
-  .container{
-    max-width: 1000px !important;
-  }
+ 
 </style>
 <!-- Navbar -->
-<nav class="navbar navbar-expand-lg d-none d-lg-block p-0 navbar-dark bg-dark">
-    <div class="container m-auto">
-      <ul class="navbar-nav">
-        <!-- Icon dropdown -->
-        <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle p-0 text-info" 
-                href="#" 
-                role="button" 
-                id="language"
-                data-bs-toggle="dropdown" 
-                aria-expanded="false">
-                EN
-            </a>
-            <i class="flag-united-kingdom flag m-0"></i>
-        </a>
-          <ul class="dropdown-menu" aria-labelledby="language">
-            <li>
-              <a class="dropdown-item" href="#"
-                ><i class="flag-united-kingdom flag"></i>English
-                <i class="fa fa-check text-success ms-2"></i
-              ></a>
-            </li>
-            <li><hr class="dropdown-divider" /></li>
-            <li>
-              <a class="dropdown-item" href="#"><i class="flag-poland flag"></i>Polski</a>
-            </li>
-            <li>
-              <a class="dropdown-item" href="#"><i class="flag-china flag"></i>中文</a>
-            </li>
-            <li>
-              <a class="dropdown-item" href="#"><i class="flag-japan flag"></i>日本語</a>
-            </li>
-            <li>
-              <a class="dropdown-item" href="#"><i class="flag-germany flag"></i>Deutsch</a>
-            </li>
-            <li>
-              <a class="dropdown-item" href="#"><i class="flag-france flag"></i>Français</a>
-            </li>
-            <li>
-              <a class="dropdown-item" href="#"><i class="flag-spain flag"></i>Español</a>
-            </li>
-            <li>
-              <a class="dropdown-item" href="#"><i class="flag-russia flag"></i>Русский</a>
-            </li>
-            <li>
-              <a class="dropdown-item" href="#"><i class="flag-portugal flag"></i>Português</a>
-            </li>
-          </ul>
-        </li>
-        <i class="text-white m-2 mt-0 mb-0">|</i>
-        <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle p-0 text-info" 
-                href="#" 
-                role="button" 
-                id="currency"
-                data-bs-toggle="dropdown" 
-                aria-expanded="false">
-                SAR
-            </a>
-            <i class="flag-united-kingdom flag m-0"></i>
-        </a>
-          <ul class="dropdown-menu" aria-labelledby="currency">
-            <li>
-              <a class="dropdown-item" href="#"
-                ><i class="flag-united-kingdom flag"></i>SAR
-                <i class="fa fa-check text-success ms-2"></i
-              ></a>
-            </li>
-            <li><hr class="dropdown-divider" /></li>
-            <li>
-              <a class="dropdown-item" href="#"><i class="flag-poland flag"></i>USD</a>
-            </li>
-            <li>
-              <a class="dropdown-item" href="#"><i class="flag-china flag"></i>YER</a>
-            </li>
-          </ul>
-        </li>
-      </ul>
-      <div>
-        <a href="#" class="text-white text-decoration-none fw-light">773021448</a>
-        <i class="text-info m-2 mt-0 mb-0">|</i>
-        <a href="#" class="text-white text-decoration-none fw-light">773021448</a>
-      </div>
-    </div>
-</nav>
-
-<div class="bg-body-tertiary " id="navigation">
+<div class="bg-body-tertiary fixed-top top-0 shadow-sm" id="navigation">
     <div class="container">
         <nav  class="navbar navbar-expand-md navbar-light bg-body-tertiary">
             <!-- Container wrapper -->
@@ -151,7 +63,7 @@
                     <a class="nav-link" href="#">About</a>
                   </li>
                 </ul>
-                <form class="d-flex input-group w-auto">
+                <form class="d-flex input-group w-auto mx-0 mx-md-4">
                     <input
                       type="search"
                       class="form-control rounded"
@@ -160,45 +72,60 @@
                       aria-describedby="search-addon"
                     />
                 </form>
+                <div class="d-block d-md-none dropdown no-arrow py-2">
+                  <a
+                    class="hidden-arrow text-info text-decoration-none fa-2x  fa-solid fa-user-circle"
+                    href="#"
+                    id="navbarDropdownMenuAvatar"
+                    data-bs-toggle="dropdown"
+                    role="button"
+                    aria-haspopup="true"
+                    aria-expanded="false"
+                    >
+                  </a>
+                  <ul
+                    class="dropdown-menu dropdown-menu-start dropdown-menu-md-end"
+                    aria-labelledby="navbarDropdownMenuAvatar"
+                  >
+                    <li>
+                      <a class="dropdown-item" href="#"><i class="fa fa-user mx-1 text-info"></i>{{user.first_name|add:' '|add:user.last_name}}</a>
+                    </li>
+                    <li>
+                      <a class="dropdown-item" href="#"><i class="fa fa-cog mx-1 text-dark-emphasis"></i> Settings</a>
+                    </li>
+                    <li>
+                      <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#logoutModal"><i class="fa fa-power-off mx-1 text-danger"></i>Logout</a>
+                    </li>
+                  </ul>
+                </div>
                 <!-- Left links -->
               </div>
               <!-- Collapsible wrapper -->
           
               <!-- Right elements -->
-              <div class="d-flex align-items-center">
+              <div class="d-flex gap-3 justify-content-around align-items-center">
                 <!-- Icon -->
-                {% if user.is_authenticated %}
-                  <a id="cart_icon" class="text-reset w-auto position-relative mx-2 me-3" href="#">
+                {% if user.is_authenticated %}    
+                  <a id="cart_icon" class="text-reset w-auto position-relative mt-2 mt-md-1" data-bs-toggle="offcanvas"  href="#cartOffcanvas" role="button" aria-controls="cartOffcanvas">
                     <i class="fa fa-cart-shopping position-relative fa-2x text-info">
                     </i>
-                    <span class="badge bg-danger rounded-pill translate-middle position-absolute top-0 start-100" id="cart_badge">{{cart|length}}</span>
+                    <span class="badge bg-danger rounded-pill translate-middle position-absolute top-0 start-100" id="cart_badge">{{cart.products|length}}</span>
                     
                   </a>    
-                  <!-- <i class="fa-solid fa-cart-shopping fa-2x"></i> -->
                   <!-- Avatar -->
-                  <div class="dropdown">
+                  <div class="d-none d-md-inline dropdown no-arrow">
                     <a
-                      class=" hidden-arrow"
+                      class="hidden-arrow text-info text-decoration-none fa-2x  fa-solid fa-user-circle"
                       href="#"
                       id="navbarDropdownMenuAvatar"
                       data-bs-toggle="dropdown"
                       role="button"
+                      aria-haspopup="true"
                       aria-expanded="false"
                       >
-                        {% if user.avatar %}
-                            <img
-                            src="{{user.avater}}"
-                            class="rounded-circle"
-                            height="25"
-                            alt="avatar"
-                            loading="lazy"
-                            />
-                        {% else %}
-                            <i class="fa fa-user-circle text-info fa-2x "></i>
-                        {% endif %}
                     </a>
                     <ul
-                      class="dropdown-menu dropdown-menu-end"
+                      class="dropdown-menu dropdown-menu-start dropdown-menu-md-end"
                       aria-labelledby="navbarDropdownMenuAvatar"
                     >
                       <li>
