@@ -4,7 +4,7 @@
         data-mdb-ripple-color="light">
         <a href="{% url 'Product:productDetails' product.pk %}">
             <img src="{{product.photo.url}}"
-                class="w-100"
+                class="w-100 object-fit-cover"
                 height="250" 
                 id="image"/>
                 {% if offer %}

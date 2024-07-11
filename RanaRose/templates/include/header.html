@@ -72,6 +72,7 @@
                       aria-describedby="search-addon"
                     />
                 </form>
+                {% if user.is_authenticated %}
                 <div class="d-block d-md-none dropdown no-arrow py-2">
                   <a
                     class="hidden-arrow text-info text-decoration-none fa-2x  fa-solid fa-user-circle"
@@ -98,6 +99,11 @@
                     </li>
                   </ul>
                 </div>
+                {% else %}
+                  <a class="text-reset d-block d-md-none mx-4 me-3" href="{% url 'Registration:login' %}">
+                    <i class="fa fa-sign-in fa-2x text-info"></i>
+                  </a>
+                {% endif %}
                 <!-- Left links -->
               </div>
               <!-- Collapsible wrapper -->

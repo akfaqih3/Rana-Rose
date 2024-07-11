@@ -78,7 +78,6 @@ function addToCart(target){
 function removeFromCart(target){
     const data = {pk:Number(target.dataset.product)}
     let url = `Cart/removeFromCart/`
-
     fetch(
         url,{
             method:'POST',
@@ -117,8 +116,12 @@ function showResult(data){
     cart_badge = document.getElementById('cart_badge');
     cart_badge.innerText = cart.products.length;
     updateCart(cart);
+    checkBtns(cart.pks)
+}
+
+function checkBtns(cart_pks){
     for (const btn of cart_btns){
-        if (cart.pks.includes(Number(btn.dataset.product))){
+        if (cart_pks.includes(Number(btn.dataset.product))){
             btn.id = "delete";
             btn.classList.replace('btn-success','btn-outline-danger');
             btn.classList.replace('fa-cart-plus','fa-trash');
@@ -143,6 +146,10 @@ function updateCart(cart){
         <td><img src ='${product.photo}' width="40" height="36"></td>
         <td><h6 class="fw-normal">${product.name}</h6></td>
         <td><h6 class="fw-normal">${product.price}</h6></td>
+        <td>
+            <button class="btn_product btn btn-sm text-danger d-block fa-solid fa-trash fs-5 w-100" data-product="${product.pk}" id="delete">
+            </button>
+        </td>
         </tr>`
         cart_body.innerHTML +=new_row;
     });

@@ -18,6 +18,7 @@
                             <th scope="col"><h6><strong>Product</strong></h6></th>
                             <th scope="col"><h6><strong>Name</strong></h6></th>
                             <th scope="col"><h6><strong>Price</strong></h6></th>
+                            <th scope="col"><h6><strong>Remove</strong></h6></th>
                         </tr>
                         </thead>
                         <tbody id="cart_body" >
@@ -27,6 +28,10 @@
                             <td><img src ='{{product.photo.url}}' width="40" height="36"></td>
                             <td><h6 class="fw-normal">{{product.name}}</h6></td>
                             <td><h6 class="fw-normal">{{product.price | floatformat:2}}</h6></td>
+                            <td>
+                                <button class="btn_product btn btn-sm text-danger d-block fa-solid fa-trash fs-5 w-100" data-product="{{product.pk}}" id="delete">
+                                </button>
+                            </td>
                         </tr>
                         {% endfor %}
                                                
@@ -36,6 +41,7 @@
                                 <th>Total</th>
                                 <td></td>
                                 <td id = 'cart_total'><h6><strong>{{cart.grand_total | floatformat:2}}</strong> <small>SAR</small></h6></td>
+                                <td></td>
                             </tr>
                             
                         </tfoot>

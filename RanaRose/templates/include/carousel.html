@@ -16,7 +16,7 @@
                     <h4 class="order-0 text-center">{{carousel.name}} <br>
                       </h4>
                     <p class="order-2 d-none d-md-block order-md-1 text-center">{{carousel.description}}</p> 
-                    {% if carousel.pk in cart %}
+                    {% if carousel in cart.products %}
                     <button class="btn_product btn btn-outline-danger order-1 m-auto order-md-2 py-2 fs-4 shadow border-1  fa-solid fa-trash fa-2 w-25" data-product="{{carousel.pk}}" id="delete">
                     </button>
                     {% else %}

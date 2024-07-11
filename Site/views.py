@@ -18,7 +18,8 @@ class Home(TemplateView):
         cart_products={}
         if self.request.user.is_authenticated:
             cart,create = Cart.objects.get_or_create(user=self.request.user,completed=False)
-
+        else :
+            cart ={}
         context = {
             'products':products,
             'categories':categories,
