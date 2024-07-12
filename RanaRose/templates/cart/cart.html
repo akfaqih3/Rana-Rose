@@ -8,7 +8,7 @@
             <h6 class="car-title text-center" id="cart_count">Products: {{cart.products|length}}</h6>
             <div class="d-flex justify-content-between align-items-end align-content-end w-100">
                 <h5 class="car-title align-self-end my-0 py-0 text-center" id="cart_total"><span class="text-info">Total:</span> {{cart.grand_total | floatformat:2}} SAR</h5>
-                <a href="" class="btn btn-success btn-sm">Checkout</a>
+                <a href="{% url 'Order:checkout' %}" class="btn btn-success btn-sm">Checkout</a>
             </div>
         </div>
     </div>
