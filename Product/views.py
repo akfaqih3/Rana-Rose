@@ -5,6 +5,8 @@ from django.views.generic import DetailView,ListView
 from .models import Product,Category,Offer
 from django.core.paginator import Paginator
 from datetime import datetime
+
+from Cart.utils import Cart
 # Create your views here.
 
 class ProductDetails(DetailView):
@@ -15,10 +17,13 @@ class ProductDetails(DetailView):
         releaseProducts = Product.objects.filter(category=self.get_object().category)
         object = Product.objects.get(pk=self.kwargs['pk'])
         offer = object.offer_set.filter(end_date__gte=datetime.today()).last()
+
+        cart = Cart(self.request).get()
         context = {
             'releaseProducts':releaseProducts,
             'object':object,
-            'offer':offer
+            'offer':offer,
+            'cart':cart
         }
         return context
 
@@ -36,9 +41,13 @@ class List(ListView):
         object_list = self.get_queryset()
         pages = Paginator(object_list,12)
         page = pages.get_page(self.request.GET.get('page'))
+
+        cart = Cart(self.request).get()
+
         context = {
             'category_name':name,
             'categories' : categories,
-            'page':page
+            'page':page,
+            'cart':cart
         }
         return context

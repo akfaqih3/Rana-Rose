@@ -7,14 +7,13 @@
     <header class="mb-5">
         {% include 'include/header.html' %}
     </header>
-    {% block content %}
-        <main class="mt-5">
-            {% include 'include/main.html' %}
-        </main>
-    {% endblock content %}
+    <main class="mt-5" id="main_tag">
+            {% block content %}
+                {% include 'include/main.html' %}
+            {% endblock content %}
+    </main>
     {% include 'include/dialog.html' %}
     {% include 'include/script.html' %}
-
     <footer>
         {% include 'include/footer.html' %}
     </footer>

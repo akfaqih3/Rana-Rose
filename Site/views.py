@@ -5,7 +5,7 @@ from django.views.generic import TemplateView,ListView
 from Product.models import Product,Category,Offer
 from Cart.models import Cart
 from datetime import datetime
-
+from Cart.utils import Cart
 class Home(TemplateView):
     template_name='base.html'
 
@@ -15,11 +15,7 @@ class Home(TemplateView):
         carousels = Product.objects.order_by('-pk')[:3]
         offers = Offer.objects.filter(end_date__gte=datetime.today())
 
-        cart_products={}
-        if self.request.user.is_authenticated:
-            cart,create = Cart.objects.get_or_create(user=self.request.user,completed=False)
-        else :
-            cart ={}
+        cart = Cart(self.request).get()
         context = {
             'products':products,
             'categories':categories,

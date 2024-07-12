@@ -26,22 +26,27 @@ for (const input of inputs){
     input.classList.add('form-control');
 };
 
-const cart_btns = document.getElementsByClassName('btn_product');
+function setBtnsEvents(){
+    const main_tag = document.getElementById('main_tag');
+    // const main_tag = document.getElementById('main_tag');
 
-for (const btn of cart_btns){
-    btn.addEventListener('click',function(e){
-        if (e.target.id == "add") {
-            addToCart(e.target);
-        }else{
-            removeFromCart(e.target);
+    document.addEventListener('click',function(e){
+        if (e.target.nodeName == 'BUTTON'){
+            if(e.target.id == 'add'){
+                addToCart(e.target);
+            }else if(e.target.id == 'delete'){
+                removeFromCart(e.target);
+            }else{
+                return 0;
+            }
         }
-       
     });
-};
+}
 
+ setBtnsEvents();
 function addToCart(target){
     const data = {pk:Number(target.dataset.product)}
-    let url = `Cart/addToCart/`
+    const url = url_addToCart ;
 
     fetch(
         url,{
@@ -64,7 +69,6 @@ function addToCart(target){
     .then(
         (data)=>{
             showResult(data);
-            target.id = "delete";
         }
     ).catch(
         (error)=>{
@@ -77,7 +81,7 @@ function addToCart(target){
 
 function removeFromCart(target){
     const data = {pk:Number(target.dataset.product)}
-    let url = `Cart/removeFromCart/`
+    let url = url_removeFromCart ;
     fetch(
         url,{
             method:'POST',
@@ -99,7 +103,6 @@ function removeFromCart(target){
     .then(
         (data)=>{
             showResult(data);
-            target.id = "add";
         }
     )
     .catch(
@@ -116,10 +119,11 @@ function showResult(data){
     cart_badge = document.getElementById('cart_badge');
     cart_badge.innerText = cart.products.length;
     updateCart(cart);
-    checkBtns(cart.pks)
+    checkBtns(cart.pks);
 }
 
 function checkBtns(cart_pks){
+    const cart_btns = document.getElementsByClassName('btn_product');
     for (const btn of cart_btns){
         if (cart_pks.includes(Number(btn.dataset.product))){
             btn.id = "delete";
@@ -138,7 +142,7 @@ function updateCart(cart){
     cart_total = document.getElementById('cart_total');
     cart_body = document.getElementById('cart_body');
     cart_count.innerText=`Products Count: ${cart.products.length}`;
-    cart_total.innerText = cart.cart_total;
+    cart_total.innerHTML=`<span class="text-info">Total:</span> ${cart.cart_total} SAR`;
 
     cart_body.innerHTML = ''
     cart.products.forEach(product => {
